@@ -7,4 +7,17 @@
   <ItemGroup>
     <ProjectReference Include="..\CoreFramework\CoreFramework.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IOC\" />
+    <Folder Include="StartUpConfig\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Pages\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>
