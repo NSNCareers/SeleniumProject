@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Practices.Unity.Configuration;
 using Unity;
 
 namespace CoreFramework.IOC
@@ -13,6 +14,7 @@ namespace CoreFramework.IOC
             get { return _container; }
             set { _container = value; }
         }
+
         //static constructor
         static UnityWrapper()
         {
@@ -21,6 +23,13 @@ namespace CoreFramework.IOC
                 Container = new UnityContainer();
             }
         }
+
+
+        public static void LoadConfig()
+        {
+            Container.LoadConfiguration("Automation");
+        }
+
 
         /// <typeparam name="T">Type of object to return</typeparam>
         /// <summary>

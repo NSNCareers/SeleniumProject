@@ -6,8 +6,29 @@ namespace CoreFramework.BaseClasses
     public abstract partial class BaseClass
     {
 
-        public bool ClickOnElement(IWebElement element)
+        public void EnterText(By by,string text)
         {
+            var element = driver.FindElement(by);
+
+            try
+            {
+                
+                element.SendKeys(text);
+            }
+            catch (Exception)
+            {
+                ScrollToView(element);
+                element.SendKeys(text);
+            }
+            finally
+            {
+                // Report to user unable to click
+            }
+        }
+
+        public bool ClickOnElement(By by)
+        {
+            var element = driver.FindElement(by);
             try
             {
                 element.Click();
@@ -25,8 +46,10 @@ namespace CoreFramework.BaseClasses
             return element.Selected;
         }
 
-        public bool ClickOnElementJavaScript(IWebElement element)
+        public bool ClickOnElementJavaScript(By by)
         {
+            var element = driver.FindElement(by);
+
             try
             {
                 JavaScriptClick(element);

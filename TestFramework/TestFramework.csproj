@@ -15,4 +15,10 @@
   <ItemGroup>
     <ProjectReference Include="..\PageObjectFramework\PageObjectFramework.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="UnitTest1.cs" />
+  </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace CoreFramework.BrowserConfig
 {
-    internal static class InitBrowser
+    internal class InitBrowser
     {
         public static WebDriverWait wait;
         private static DriverOptions option;

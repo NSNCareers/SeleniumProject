@@ -2,6 +2,7 @@
 {
     public interface IHomePage
     {
-        void EnterSearchString();
+        void EnterSearchString(string text);
+        string GetPageTitel();
     }
 }

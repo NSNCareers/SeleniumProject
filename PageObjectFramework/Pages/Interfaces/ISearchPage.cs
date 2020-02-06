@@ -1,7 +1,8 @@
-﻿namespace PageObjectFramework.Pages
+﻿namespace PageObjectFramework.Interfaces
 {
     public interface ISearchPage
     {
-        void EnterSearchString();
+        void ClickOnElement();
+        string GetPageTitel();
     }
 }

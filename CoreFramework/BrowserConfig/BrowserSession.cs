@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace CoreFramework.BrowserConfig
 {
-    internal static class BrowserSession
+    internal class BrowserSession
     {
         private static ThreadLocal<IWebDriver> _threadDriver = new ThreadLocal<IWebDriver>();
 
@@ -23,7 +23,7 @@ namespace CoreFramework.BrowserConfig
 
         public static void NavigateToSite()
         {
-            GetDriver.Navigate().GoToUrl("www.google.com");
+            GetDriver.Navigate().GoToUrl("www.purplebricks.co.uk");
         }
 
         public static IWebDriver GetDriver

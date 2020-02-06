@@ -4,9 +4,9 @@ using OpenQA.Selenium;
 
 namespace CoreFramework.BaseClasses
 {
-    public class BaseClass 
+    public abstract partial class BaseClass
     {
-        private IWebDriver driver = Session.Driver;
+        private IWebDriver _driver;
         private readonly string _pageName;
         private readonly By _by;
 
@@ -19,8 +19,8 @@ namespace CoreFramework.BaseClasses
 
         private bool OnPage()
         {
-            WaitHelpers.WaitUntillPageFullyLoaded();
-            var boolResults = WaitHelpers.WaitTillElementVisible(_by);
+            WaitUntillPageFullyLoaded();
+            var boolResults = WaitTillElementVisible(_by);
             if (!boolResults)
             {
                 // Report with page name
@@ -28,6 +28,11 @@ namespace CoreFramework.BaseClasses
                 return false;
             }
             return true;
+        }
+
+        public static IWebDriver driver
+        {
+            get { return BrowserSession.GetDriver; }
         }
     }
 }
