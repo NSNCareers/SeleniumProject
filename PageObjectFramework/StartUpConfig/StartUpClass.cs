@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreFramework.BrowserConfig;
 using NUnit.Framework;
+using PageObjectFramework.Interfaces;
 using PageObjectFramework.IOC;
 
 namespace PageObjectFramework.StartUpConfig
@@ -27,5 +28,12 @@ namespace PageObjectFramework.StartUpConfig
         {
             Session.CloseBrowser();
         }
+
+        #region Interfacce declarations
+
+        public readonly IHomePage homePage;
+        public readonly ISearchPage searchPage;
+
+        #endregion
     }
 }

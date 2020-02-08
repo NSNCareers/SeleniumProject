@@ -6,6 +6,7 @@ using PageObjectFramework.StartUpConfig;
 namespace TestFramework.Tests
 {
     [TestFixture]
+    [Category("Check page titel")]
     public class SearchTest1 : StartUpClass
     {
         private readonly IHomePage _homePage;
@@ -31,7 +32,7 @@ namespace TestFramework.Tests
 
 
 
-        [Test,Category("Check page titel")]
+        [Test]
         public void AssertPageTitel()
         {
             var titel = _homePage.GetPageTitel();
@@ -40,7 +41,7 @@ namespace TestFramework.Tests
             _homePage.EnterSearchString("CV10 8QY");
         }
 
-        [Test, Category("Check page titel")]
+        [Test]
         public void AssertTextOnPage()
         {
             _searchPage.ClickOnElement();
