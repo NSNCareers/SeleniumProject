@@ -4,5 +4,6 @@
     {
         void EnterSearchString(string text);
         string GetPageTitel();
+        void ClickOnElementSearchButton();
     }
 }

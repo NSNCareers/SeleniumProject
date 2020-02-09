@@ -7,17 +7,11 @@ namespace PageObjectFramework.Pages
 {
     public class SearchPage : BaseClass, ISearchPage
     {
-        private static string pageName = "HomePage";
-        private static By locator = By.CssSelector("");
+        private static string pageName = "SearchPage";
+        private static By locator = By.CssSelector("#buttonLogin");
 
         public SearchPage() : base(pageName, locator)
         {
-        }
-
-        public void ClickOnElement()
-        {
-            var locator = By.CssSelector("");
-            ClickOnElement(locator);
         }
 
         public string GetPageTitel()

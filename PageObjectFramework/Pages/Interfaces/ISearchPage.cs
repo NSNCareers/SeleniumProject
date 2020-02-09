@@ -2,7 +2,6 @@
 {
     public interface ISearchPage
     {
-        void ClickOnElement();
         string GetPageTitel();
     }
 }

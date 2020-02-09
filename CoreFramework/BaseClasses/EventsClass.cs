@@ -43,7 +43,7 @@ namespace CoreFramework.BaseClasses
                 // Report to user unable to click
             }
 
-            return element.Selected;
+            return true;
         }
 
         public bool ClickOnElementJavaScript(By by)
@@ -64,7 +64,7 @@ namespace CoreFramework.BaseClasses
                 // Report to user unable to click
             }
 
-            return element.Selected;
+            return true;
         }
 
         private void JavaScriptClick(IWebElement element)

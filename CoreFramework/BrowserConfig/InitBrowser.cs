@@ -40,7 +40,7 @@ namespace CoreFramework.BrowserConfig
                         option.AddAdditionalCapability("", true);
                         break;
 
-                    case "chrome":
+                    case "chromess":
                         chromeOptions = new ChromeOptions();
                         chromeOptions.AddArgument("--window-size=1920,1080");
                         chromeOptions.AddArgument("--start-maximized");
@@ -68,9 +68,10 @@ namespace CoreFramework.BrowserConfig
                         break;
 
                     default:
-                        _driver = new FirefoxDriver();
+                        _driver = new ChromeDriver();
                         break;
                 }
+
 
                 if (browser.Equals("chrome"))
                 {
@@ -87,7 +88,7 @@ namespace CoreFramework.BrowserConfig
             }
             catch (Exception e)
             {
-                // Reports
+                throw e;
 
             }
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(int.Parse(elementLoadWaitTime));

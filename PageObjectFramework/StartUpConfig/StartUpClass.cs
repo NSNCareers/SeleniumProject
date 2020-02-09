@@ -16,9 +16,7 @@ namespace PageObjectFramework.StartUpConfig
         [OneTimeSetUp]
         public void StartUp()
         {
-            // Register dependencies
             ResolveDependency.RegisterAndResolveDependencies();
-            // Open Browser session
             Session.StartBrowser();
         }
 

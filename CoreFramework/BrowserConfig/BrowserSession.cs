@@ -23,7 +23,7 @@ namespace CoreFramework.BrowserConfig
 
         public static void NavigateToSite()
         {
-            GetDriver.Navigate().GoToUrl("www.purplebricks.co.uk");
+            GetDriver.Navigate().GoToUrl("http://www.purplebricks.co.uk");
         }
 
         public static IWebDriver GetDriver

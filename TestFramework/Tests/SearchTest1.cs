@@ -1,22 +1,17 @@
 ﻿using System;
 using NUnit.Framework;
 using PageObjectFramework.Interfaces;
+using PageObjectFramework.IOC;
 using PageObjectFramework.StartUpConfig;
+using Unity;
 
 namespace TestFramework.Tests
 {
-    [TestFixture]
-    [Category("Check page titel")]
+    [TestFixture()]
     public class SearchTest1 : StartUpClass
     {
-        private readonly IHomePage _homePage;
-        private readonly ISearchPage _searchPage;
-
-        public SearchTest1(IHomePage homePage, ISearchPage searchPage)
-        {
-            _homePage = homePage;
-            _searchPage = searchPage;
-        }
+        private IHomePage _homePage;
+        private ISearchPage _searchPage;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -32,21 +27,23 @@ namespace TestFramework.Tests
 
 
 
-        [Test]
+        [Test, Category("Check page titel")]
         public void AssertPageTitel()
         {
+            _homePage = UnityWrapper.Resolve<IHomePage>();
             var titel = _homePage.GetPageTitel();
-            var pageTitel = "";
+            var pageTitel = "Purplebricks Estate Agents - You'll Be Totally Sold";
             Assert.AreEqual(titel,pageTitel);
             _homePage.EnterSearchString("CV10 8QY");
+            _homePage.ClickOnElementSearchButton();
         }
 
-        [Test]
+        [Test, Category("Check page titel")]
         public void AssertTextOnPage()
         {
-            _searchPage.ClickOnElement();
+            _searchPage = UnityWrapper.Resolve<ISearchPage>();
             var titel =_searchPage.GetPageTitel();
-            var pageTitel = "";
+            var pageTitel = "Nuneaton Properties for Sale | Purplebricks";
             Assert.AreEqual(titel, pageTitel);
         }
     }

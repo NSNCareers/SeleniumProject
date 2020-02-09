@@ -1,12 +1,18 @@
-﻿using System;
-using Microsoft.Practices.Unity.Configuration;
+﻿using Microsoft.Practices.Unity.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Text;
+using System.Web.Mvc;
 using Unity;
 
-namespace CoreFramework.IOC
+namespace PageObjectFramework.IOC
 {
     public class UnityWrapper
     {
         protected static IUnityContainer _container;
+        protected static string ContainerName = "Automation";
+        protected static string Unity = "unity";
 
         //Container getter setter
         public static IUnityContainer Container
@@ -27,7 +33,13 @@ namespace CoreFramework.IOC
 
         public static void LoadConfig()
         {
-            Container.LoadConfiguration("Automation");
+
+
+            _container.LoadConfiguration(ContainerName);
+            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection(Unity);
+            section.Configure(Container, ContainerName);
+
+           
         }
 
 
