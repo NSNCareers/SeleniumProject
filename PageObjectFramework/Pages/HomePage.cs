@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using CoreFramework.BaseClasses;
 using OpenQA.Selenium;
 using PageObjectFramework.Interfaces;
@@ -16,6 +17,8 @@ namespace PageObjectFramework.Pages
 
         public void EnterSearchString(string text)
         {
+            AcceptCookie();
+            Thread.Sleep(5000);
             var locator = By.CssSelector("input[data-testid='nav-desktop-property-search-input']");
             EnterText(locator, text);
         }
@@ -31,6 +34,16 @@ namespace PageObjectFramework.Pages
         {
             var locator = By.CssSelector("button[data-testid='nav-desktop-property-search-button']");
             ClickOnElement(locator);
+        }
+
+        private void AcceptCookie()
+        {
+            var locator = By.CssSelector("div[class='as-oil-l-item']>button");
+            var element = driver.FindElement(locator);
+            if (element.Displayed)
+            {
+                ClickOnElement(locator);
+            }
         }
     }
 }

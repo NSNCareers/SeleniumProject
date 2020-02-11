@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Drawing;
+using System.Threading;
+using CoreFramework.JsonReader;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -22,11 +26,12 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
-            string hubIpAddress = "";
-            remoteWebDriverWaitTime = "";
-            elementLoadWaitTime = "";
-            pageLoadWaitTime = "";
+            string hubIpAddress = GetJson.GetJsonString().BaseUrl;
+            remoteWebDriverWaitTime = ConfigurationManager.AppSettings.Get("remoteWebdriverWait");
+            elementLoadWaitTime = ConfigurationManager.AppSettings.Get("elementWaitTime");
+            pageLoadWaitTime = ConfigurationManager.AppSettings.Get("pageLoad");
             IWebDriver _driver = null;
+            
             var browser = browserType.ToLower();
 
             try
@@ -69,7 +74,11 @@ namespace CoreFramework.BrowserConfig
 
                     default:
                         _driver = new ChromeDriver();
-                        break;
+                        _driver.Manage().Window.Maximize();
+                        _driver.Navigate().GoToUrl(hubIpAddress);
+                        _driver.Manage().Cookies.DeleteAllCookies();
+                        Thread.Sleep(5000);
+                        return _driver;
                 }
 
 

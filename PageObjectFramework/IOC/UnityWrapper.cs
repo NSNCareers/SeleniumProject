@@ -1,9 +1,5 @@
 ﻿using Microsoft.Practices.Unity.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Text;
-using System.Web.Mvc;
 using Unity;
 
 namespace PageObjectFramework.IOC

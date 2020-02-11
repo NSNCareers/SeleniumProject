@@ -16,14 +16,8 @@ namespace CoreFramework.BrowserConfig
             lock (_lock)
             {
                 _threadDriver.Value = InitBrowser.InitializeDriver(browserType);
-                //Reporter.WriteTestExecutionInfo($"{browserType} - Opened for test execution.");
                 return _threadDriver.Value;
             }
-        }
-
-        public static void NavigateToSite()
-        {
-            GetDriver.Navigate().GoToUrl("http://www.purplebricks.co.uk");
         }
 
         public static IWebDriver GetDriver

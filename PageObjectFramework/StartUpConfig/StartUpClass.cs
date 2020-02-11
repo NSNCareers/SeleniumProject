@@ -1,5 +1,4 @@
-﻿using System;
-using CoreFramework.BrowserConfig;
+﻿using CoreFramework.BrowserConfig;
 using NUnit.Framework;
 using PageObjectFramework.Interfaces;
 using PageObjectFramework.IOC;

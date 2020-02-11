@@ -1,6 +1,4 @@
-﻿using System;
-using CoreFramework.Enumerations;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using static CoreFramework.Enumerations.Enums;
 
 namespace CoreFramework.BrowserConfig
@@ -12,7 +10,6 @@ namespace CoreFramework.BrowserConfig
        public static void StartBrowser()
         {
             BrowserSession.OpenBrowser(browserType);
-            BrowserSession.NavigateToSite();
         }
 
         public static void CloseBrowser()

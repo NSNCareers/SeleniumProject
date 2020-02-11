@@ -1,0 +1,10 @@
+﻿{
+  "BaseUrl": "http://www.purplebricks.co.uk",
+  "ApplicationName": "",
+  "Verion": "",
+  "Environment": "",
+  "PageLoad": "55",
+  "ElementWaitTime": "10",
+  "RemoteWebdriverWait": "60",
+  "HubIpAddress": ""
+}
