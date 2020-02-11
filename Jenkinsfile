@@ -1,11 +1,9 @@
 pipeline {
         agent any
-         environment {
-             registry = "dockerelvis/employeeapplicationrepo"
-             registryCredential = 'dockerhub'
-             dockerImagenotage = ''
+        
+        environment {
+             PATH = "$PATH:/usr/bin"
                     }
-
              stages {
                  stage ('Restore Stage') {
                       steps {
@@ -22,6 +20,13 @@ pipeline {
                         sh'dotnet build --configuration Release'
                         }
                     }
+              stage ('Docker Compose up') {
+                     steps {
+                          sh "docker-compose build"
+                          sh "docker-compose up -d"
+                          sh 'sleep 5000'
+                            }
+                        }
              stage ('Test Stage') {
                      steps {
                           sh'dotnet test'
@@ -32,32 +37,23 @@ pipeline {
                           sh'dotnet pack --no-build --output nupkgs'
                         }
                     }
-              stage ('Build Image') {
-                      steps {
-                              sh "docker build -t $registry:$BUILD_NUMBER ."
-                              sh "docker build -t $registry ."
-                        }
-                                         
+             post {
+                     always {
+                     echo 'Test Execution complete'
+                     sh'docker-compose down || true'
+                      }
+                      success {
+                      echo 'Job succeeeded!'
+                      }
+                      unstable {
+                      echo 'Job unstable'
+                     }
+                     failure {
+                     echo 'Job failed'
+                     }
+                     changed {
+                     echo 'Things were different before...'
                     }
-               stage ('Deploy Image') {
-                     steps {
-                          script{
-                              withDockerRegistry(credentialsId: '575140d9-14b4-4d0e-8106-6a6509ff19b7', url: 'https://index.docker.io/v1/')
-                                  
-                                  {     
-                               sh "docker push $registry"
-                              }
-                          }
-
-                        }
-                    }
-               stage ('Remove unused docker Image') {
-                     steps {
-                         script{
-                              sh "docker rmi $registry:$BUILD_NUMBER"
-                          }
-                        }
-                    }
-
+                     
                  }
             }
