@@ -24,7 +24,7 @@ pipeline {
               stage ('Docker Swarm init') {
                      steps {
                           sh "docker stack deploy --compose-file $Yaml Grid"
-                          sh 'sleep 5000'
+                          sh 'sleep 10'
                             }
                         }
              stage ('Test Stage') {
