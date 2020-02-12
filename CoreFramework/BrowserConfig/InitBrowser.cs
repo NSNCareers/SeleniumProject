@@ -45,7 +45,7 @@ namespace CoreFramework.BrowserConfig
                         option.AddAdditionalCapability("", true);
                         break;
 
-                    case "chromess":
+                    case "chrome":
                         chromeOptions = new ChromeOptions();
                         chromeOptions.AddArgument("--window-size=1920,1080");
                         chromeOptions.AddArgument("--start-maximized");
