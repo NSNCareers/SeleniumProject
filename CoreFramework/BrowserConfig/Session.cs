@@ -5,7 +5,7 @@ namespace CoreFramework.BrowserConfig
 {
     public static class Session
     {
-       private static string browserType = Browser.chrome.ToString();
+       private static string browserType = Browser.firefox.ToString();
 
        public static void StartBrowser()
         {

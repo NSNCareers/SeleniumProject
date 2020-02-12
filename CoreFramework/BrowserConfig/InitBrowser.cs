@@ -26,7 +26,7 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
-            string hubIpAddress = "http://209.97.158.138:4444";
+            string hubIpAddress = "http://209.97.158.138:4444/wd/hub";
             remoteWebDriverWaitTime = "60";
             elementLoadWaitTime = "10";
             pageLoadWaitTime = "5";
