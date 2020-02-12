@@ -26,10 +26,10 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
-            string hubIpAddress = GetJson.GetJsonString().BaseUrl;
-            remoteWebDriverWaitTime = ConfigurationManager.AppSettings.Get("remoteWebdriverWait");
-            elementLoadWaitTime = ConfigurationManager.AppSettings.Get("elementWaitTime");
-            pageLoadWaitTime = ConfigurationManager.AppSettings.Get("pageLoad");
+            string hubIpAddress = "http://209.97.158.138:4444";
+            remoteWebDriverWaitTime = "60";
+            elementLoadWaitTime = "10";
+            pageLoadWaitTime = "5";
             IWebDriver _driver = null;
             
             var browser = browserType.ToLower();
