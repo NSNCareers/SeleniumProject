@@ -3,7 +3,7 @@ pipeline {
         
         environment {
              PATH = "$PATH:/usr/bin"
-             Yaml = "grid.yaml"
+             Yaml = "grid.yml"
                     }
              stages {
                  stage ('Restore Stage') {
