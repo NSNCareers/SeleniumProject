@@ -37,6 +37,7 @@ pipeline {
                           sh'dotnet pack --no-build --output nupkgs'
                         }
                     }
+             }
              post {
                      always {
                      echo 'Test Execution complete'
@@ -55,6 +56,5 @@ pipeline {
                      echo 'Things were different before...'
                     }
                  }
-                     
-                 }
+                    
             }
