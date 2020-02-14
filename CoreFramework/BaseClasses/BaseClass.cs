@@ -32,7 +32,7 @@ namespace CoreFramework.BaseClasses
 
         public static IWebDriver driver
         {
-            get { return BrowserSession.GetDriver; }
+            get { return BrowserSession.driver; }
         }
     }
 }

@@ -26,10 +26,10 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
-            string hubIpAddress = "http://209.97.158.138:4444/wd/hub";
+            string hubIpAddress = "http://159.89.181.18:4444/wd/hub";
             remoteWebDriverWaitTime = "60";
             elementLoadWaitTime = "10";
-            pageLoadWaitTime = "5";
+            pageLoadWaitTime = "10";
             IWebDriver _driver = null;
             
             var browser = browserType.ToLower();
@@ -53,9 +53,6 @@ namespace CoreFramework.BrowserConfig
 
                     case "firefox":
                         option = new FirefoxOptions();
-                        option.AddAdditionalCapability("--window-size=1920,1080", true);
-                        option.AddAdditionalCapability("--start-maximized", true);
-                        option.AddAdditionalCapability("", true);
                         break;
 
                     case "noGridChrome":
@@ -75,7 +72,6 @@ namespace CoreFramework.BrowserConfig
                     default:
                         _driver = new ChromeDriver();
                         _driver.Manage().Window.Maximize();
-                        _driver.Navigate().GoToUrl(hubIpAddress);
                         _driver.Manage().Cookies.DeleteAllCookies();
                         Thread.Sleep(5000);
                         return _driver;

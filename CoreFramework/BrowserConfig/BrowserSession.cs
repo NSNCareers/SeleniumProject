@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using OpenQA.Selenium;
+using static CoreFramework.Enumerations.Enums;
 
 namespace CoreFramework.BrowserConfig
 {
@@ -10,8 +11,10 @@ namespace CoreFramework.BrowserConfig
 
         private static readonly object _lock = new object();
 
+        private static string browserType = Browser.firefox.ToString();
 
-        public static IWebDriver OpenBrowser(string browserType)
+
+        public static IWebDriver OpenBrowser()
         {
             lock (_lock)
             {
@@ -20,11 +23,24 @@ namespace CoreFramework.BrowserConfig
             }
         }
 
-        public static IWebDriver GetDriver
+        public static IWebDriver driver
         {
             get { return _threadDriver.Value; }
         }
+        
+        public static void GoToDesiredUrl()
+        {
+            try
+            {
+                var driver = _threadDriver.Value;
+                driver.Navigate().GoToUrl("http://www.purplebricks.co.uk");
+            }
+            catch (Exception e)
+            {
 
+                throw e;
+            }
+        }
        
         public static void CloseBrowser()
         {
