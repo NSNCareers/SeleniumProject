@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 
 namespace CoreFramework.Config
@@ -10,15 +11,12 @@ namespace CoreFramework.Config
 
        public static string GetJsonValue(string key)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appConfig.json", optional: false, reloadOnChange: true)
-                .AddJsonFile("hubConfig.json", optional: false, reloadOnChange: true)
-                .AddJsonFile("nodeConfig.json", optional: false, reloadOnChange: true);
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var builder = new ConfigurationBuilder().SetBasePath(path).AddJsonFile("appConfig.json").Build();
 
-            _configuration = builder.Build();
+            string value = builder[key];
 
-            return _configuration[key];
+            return value;
         }
     }
 }

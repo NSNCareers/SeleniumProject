@@ -1,5 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
+using CoreFramework.Config;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using static CoreFramework.Enumerations.Enums;
 
@@ -13,6 +17,9 @@ namespace CoreFramework.BrowserConfig
 
         private static string browserType = Browser.firefox.ToString();
 
+        static BrowserSession()
+        {
+        }
 
         public static IWebDriver OpenBrowser()
         {
@@ -30,10 +37,11 @@ namespace CoreFramework.BrowserConfig
         
         public static void GoToDesiredUrl()
         {
+            string Url = JsonConfig.GetJsonValue("BaseUrl");
             try
             {
                 var driver = _threadDriver.Value;
-                driver.Navigate().GoToUrl("http://www.purplebricks.co.uk");
+                driver.Navigate().GoToUrl(Url);
             }
             catch (Exception e)
             {
