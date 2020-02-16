@@ -26,7 +26,8 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
-            string hubIpAddress = GetJson.GetJsonString().BaseUrl;
+            //string hubIpAddress = GetJson.GetJsonString().BaseUrl;
+            string hubIpAddress = "http://www.purplebricks.co.uk";
             remoteWebDriverWaitTime = ConfigurationManager.AppSettings.Get("remoteWebdriverWait");
             elementLoadWaitTime = ConfigurationManager.AppSettings.Get("elementWaitTime");
             pageLoadWaitTime = ConfigurationManager.AppSettings.Get("pageLoad");
@@ -45,7 +46,7 @@ namespace CoreFramework.BrowserConfig
                         option.AddAdditionalCapability("", true);
                         break;
 
-                    case "chromess":
+                    case "chromessss":
                         chromeOptions = new ChromeOptions();
                         chromeOptions.AddArgument("--window-size=1920,1080");
                         chromeOptions.AddArgument("--start-maximized");
