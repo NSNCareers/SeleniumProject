@@ -3,6 +3,7 @@ pipeline {
         
         environment {
              PATH = "$PATH:/usr/bin"
+             Yaml = "grid.yml"
                     }
              stages {
                  stage ('Restore Stage') {
@@ -20,11 +21,10 @@ pipeline {
                         sh'dotnet build --configuration Release'
                         }
                     }
-              stage ('Docker Compose up') {
+              stage ('Docker Swarm init') {
                      steps {
-                          sh "docker-compose build"
-                          sh "docker-compose up -d"
-                          sh 'sleep 5000'
+                          sh "docker stack deploy --compose-file $Yaml Grid"
+                          sh 'sleep 10'
                             }
                         }
              stage ('Test Stage') {
@@ -37,10 +37,11 @@ pipeline {
                           sh'dotnet pack --no-build --output nupkgs'
                         }
                     }
+             }
              post {
                      always {
                      echo 'Test Execution complete'
-                     sh'docker-compose down || true'
+                     sh'docker stack rm Grid'
                       }
                       success {
                       echo 'Job succeeeded!'
@@ -54,6 +55,6 @@ pipeline {
                      changed {
                      echo 'Things were different before...'
                     }
-                     
                  }
+                    
             }

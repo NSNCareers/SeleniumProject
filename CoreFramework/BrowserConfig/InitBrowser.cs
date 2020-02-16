@@ -26,11 +26,18 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
+<<<<<<< HEAD
             //string hubIpAddress = GetJson.GetJsonString().BaseUrl;
             string hubIpAddress = "http://www.purplebricks.co.uk";
             remoteWebDriverWaitTime = ConfigurationManager.AppSettings.Get("remoteWebdriverWait");
             elementLoadWaitTime = ConfigurationManager.AppSettings.Get("elementWaitTime");
             pageLoadWaitTime = ConfigurationManager.AppSettings.Get("pageLoad");
+=======
+            string hubIpAddress = "http://159.89.181.18:4444/wd/hub";
+            remoteWebDriverWaitTime = "60";
+            elementLoadWaitTime = "10";
+            pageLoadWaitTime = "10";
+>>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
             IWebDriver _driver = null;
             
             var browser = browserType.ToLower();
@@ -46,7 +53,11 @@ namespace CoreFramework.BrowserConfig
                         option.AddAdditionalCapability("", true);
                         break;
 
+<<<<<<< HEAD
                     case "chromessss":
+=======
+                    case "chrome":
+>>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
                         chromeOptions = new ChromeOptions();
                         chromeOptions.AddArgument("--window-size=1920,1080");
                         chromeOptions.AddArgument("--start-maximized");
@@ -54,9 +65,6 @@ namespace CoreFramework.BrowserConfig
 
                     case "firefox":
                         option = new FirefoxOptions();
-                        option.AddAdditionalCapability("--window-size=1920,1080", true);
-                        option.AddAdditionalCapability("--start-maximized", true);
-                        option.AddAdditionalCapability("", true);
                         break;
 
                     case "noGridChrome":
@@ -76,7 +84,6 @@ namespace CoreFramework.BrowserConfig
                     default:
                         _driver = new ChromeDriver();
                         _driver.Manage().Window.Maximize();
-                        _driver.Navigate().GoToUrl(hubIpAddress);
                         _driver.Manage().Cookies.DeleteAllCookies();
                         Thread.Sleep(5000);
                         return _driver;

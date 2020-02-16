@@ -16,7 +16,11 @@ services:
         selenium.grid.type: "hub"
         selenium.grid.hub: "true"
       restart_policy:
+<<<<<<< HEAD
         condition: on-failure
+=======
+        condition: none
+>>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
       placement:
         constraints: [node.role == manager ]
   chrome:
@@ -43,7 +47,11 @@ services:
         selenium.grid.type: "node"
         selenium.grid.node: "true"
       restart_policy:
+<<<<<<< HEAD
         condition: on-failure
+=======
+        condition: none
+>>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
       placement:
         constraints: [node.role == worker]
   firefox:
@@ -70,6 +78,10 @@ services:
         selenium.grid.type: "node"
         selenium.grid.node: "true"
       restart_policy:
+<<<<<<< HEAD
         condition: on-failure
+=======
+        condition: none
+>>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
       placement:
         constraints: [node.role == worker]

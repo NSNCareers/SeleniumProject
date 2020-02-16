@@ -5,11 +5,11 @@ namespace CoreFramework.BrowserConfig
 {
     public static class Session
     {
-       private static string browserType = Browser.chrome.ToString();
 
        public static void StartBrowser()
         {
-            BrowserSession.OpenBrowser(browserType);
+            BrowserSession.OpenBrowser();
+            BrowserSession.GoToDesiredUrl();
         }
 
         public static void CloseBrowser()
@@ -19,7 +19,7 @@ namespace CoreFramework.BrowserConfig
 
         public static IWebDriver Driver
         {
-            get { return BrowserSession.GetDriver; }
+            get { return BrowserSession.driver; }
         }
     }
 }
