@@ -1,7 +1,11 @@
 #!/bin/bash
 
+success=$?
 
- echo "Initializing Swarm mode..."
+
+if [ ${success} -eq 0 ];
+then 
+	echo "Initializing Swarm mode..."
 for i in 1 2 3; do
 	if [ "$i" == "1" ]; then
         manager_ip=$(docker-machine ip Node-$i)
@@ -15,3 +19,9 @@ for i in 1 2 3; do
 done
 
 sleep 10
+
+ else
+
+ echo "Unable to update droplets"
+
+ fi
