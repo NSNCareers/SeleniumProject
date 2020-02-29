@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Drawing;
 using System.Threading;
+using CoreFramework.Config;
 using CoreFramework.JsonReader;
 using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
@@ -26,7 +27,7 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
-            string hubIpAddress = "http://159.89.181.18:4444/wd/hub";
+            string hubIpAddress = JsonConfig.GetJsonValue("HubIpAddress");
             remoteWebDriverWaitTime = "60";
             elementLoadWaitTime = "10";
             pageLoadWaitTime = "10";
@@ -47,12 +48,19 @@ namespace CoreFramework.BrowserConfig
 
                     case "chrome":
                         chromeOptions = new ChromeOptions();
-                        chromeOptions.AddArgument("--window-size=1920,1080");
-                        chromeOptions.AddArgument("--start-maximized");
+                        //chromeOptions.AddArgument("no-sandbox");
+
+                        //ChromeOptions options = new ChromeOptions();
+                        //options.AddArgument("no-sandbox");
+                        //ChromeDriver driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options, TimeSpan.FromMinutes(3));
+                        //driver.Manage().Timeouts().PageLoad.Add(System.TimeSpan.FromSeconds(30));
+
+
                         break;
 
                     case "firefox":
                         option = new FirefoxOptions();
+
                         break;
 
                     case "noGridChrome":

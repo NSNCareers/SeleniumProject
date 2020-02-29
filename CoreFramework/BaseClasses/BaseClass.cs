@@ -6,7 +6,6 @@ namespace CoreFramework.BaseClasses
 {
     public abstract partial class BaseClass
     {
-        private IWebDriver _driver;
         private readonly string _pageName;
         private readonly By _by;
 
@@ -20,7 +19,7 @@ namespace CoreFramework.BaseClasses
         private bool OnPage()
         {
             WaitUntillPageFullyLoaded();
-            var boolResults = WaitTillElementVisible(_by);
+            var boolResults = WaitTillElementIsDisplayed(_by);
             if (!boolResults)
             {
                 // Report with page name

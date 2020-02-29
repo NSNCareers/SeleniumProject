@@ -6,5 +6,5 @@
   "PageLoad": "55",
   "ElementWaitTime": "10",
   "RemoteWebdriverWait": "60",
-  "HubIpAddress": ""
+  "HubIpAddress": "http://64.225.4.201:4444/wd/hub"
 }

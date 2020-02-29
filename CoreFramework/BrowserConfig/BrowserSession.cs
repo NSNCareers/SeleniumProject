@@ -15,7 +15,7 @@ namespace CoreFramework.BrowserConfig
 
         private static readonly object _lock = new object();
 
-        private static string browserType = Browser.firefox.ToString();
+        private static string browserType = Browser.chrome.ToString();
 
         static BrowserSession()
         {

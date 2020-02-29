@@ -7,77 +7,79 @@ namespace CoreFramework.BaseClasses
      public abstract partial class BaseClass
     {
 
-        public bool WaitTillElementVisible(By by, int timeout = 20)
+        public bool WaitTillElementSelected(By by, int timeout = 20)
         {
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
-            try
-            {
-                wait.Until(ExpectedConditions.ElementIsVisible(by));
-            }
-            catch (Exception e)
-            {
-                // Report
-                return false;
-            }
-            return true;
-        }
+            var boolResults = false;
 
-        public void WaitTillElementExist(By by, int timeout = 20)
-        {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
             try
             {
-                wait.Until(ExpectedConditions.ElementExists(by));
+                boolResults = wait.Until(x => x.FindElement(by).Selected);
             }
             catch (Exception e)
             {
                 // Report
             }
+
+            return boolResults;
         }
 
-        public void WaitTillElementIsClickable(By by, int timeout = 20)
+        public bool WaitTillElementEnabled(By by, int timeout = 20)
         {
+            var boolResults = false;
+
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
             try
             {
-                wait.Until(ExpectedConditions.ElementToBeClickable(by));
+                boolResults= wait.Until(x => x.FindElement(by).Enabled);
             }
             catch (Exception e)
             {
                 // Report
             }
+
+            return boolResults;
         }
 
-        public void WaitTillElementContainsString(By by, string text, int timeout = 20)
+        public bool WaitTillElementContainsString(By by, string text, int timeout = 20)
         {
+            var boolResults = false;
+
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
             try
             {
-                wait.Until(ExpectedConditions.TextToBePresentInElementLocated(by, text));
+                boolResults = wait.Until(x => x.FindElement(by).Text == text);
             }
             catch (Exception e)
             {
                // Report
             }
+
+            return boolResults;
         }
 
-        public void WaitTillElementIsInVisible(By by, int timeout = 20)
+        public bool WaitTillElementIsDisplayed(By by, int timeout = 20)
         {
+            var boolResults = false;
+
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
             try
             {
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(by));
+                boolResults = wait.Until(x => x.FindElement(by).Displayed);
             }
             catch (Exception e)
             {
                 // Report
             }
+
+            return boolResults;
         }
 
-        public void WaitUntillPageFullyLoaded(int timeout = 20)
+        public bool WaitUntillPageFullyLoaded(int timeout = 20)
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            var boolResults = false;
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             try
             {
                 wait.Until(wd => js.ExecuteScript("return document.readyState").ToString() == "complete");
@@ -86,6 +88,14 @@ namespace CoreFramework.BaseClasses
             {
                 // Report
             }
+
+            return boolResults;
+        }
+
+        public void ExecuteJavaScript(string executionText, object obj)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript(executionText,obj);
         }
     }
 }
