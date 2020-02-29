@@ -27,10 +27,22 @@ namespace CoreFramework.BrowserConfig
 
         internal static IWebDriver InitializeDriver(string browserType)
         {
+<<<<<<< HEAD
             string hubIpAddress = JsonConfig.GetJsonValue("HubIpAddress");
+=======
+<<<<<<< HEAD
+            //string hubIpAddress = GetJson.GetJsonString().BaseUrl;
+            string hubIpAddress = "http://www.purplebricks.co.uk";
+            remoteWebDriverWaitTime = ConfigurationManager.AppSettings.Get("remoteWebdriverWait");
+            elementLoadWaitTime = ConfigurationManager.AppSettings.Get("elementWaitTime");
+            pageLoadWaitTime = ConfigurationManager.AppSettings.Get("pageLoad");
+=======
+            string hubIpAddress = "http://159.89.181.18:4444/wd/hub";
+>>>>>>> c5783051340e0b9550059f9f2cd6139e13dd563a
             remoteWebDriverWaitTime = "60";
             elementLoadWaitTime = "10";
             pageLoadWaitTime = "10";
+>>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
             IWebDriver _driver = null;
             
             var browser = browserType.ToLower();
@@ -46,7 +58,11 @@ namespace CoreFramework.BrowserConfig
                         option.AddAdditionalCapability("", true);
                         break;
 
+<<<<<<< HEAD
+                    case "chromessss":
+=======
                     case "chrome":
+>>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
                         chromeOptions = new ChromeOptions();
                         //chromeOptions.AddArgument("no-sandbox");
 

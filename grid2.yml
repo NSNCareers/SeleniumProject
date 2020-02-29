@@ -1,10 +1,10 @@
-version: "3.5"
+version: "3.7"
 networks:
   main:
     driver: overlay
 services:
   hub:
-    image: selenium/hub
+    image: selenium/hub:3.141.59-zirconium
     ports:
       - "4444:4444"
     networks:
@@ -16,19 +16,12 @@ services:
         selenium.grid.type: "hub"
         selenium.grid.hub: "true"
       restart_policy:
-<<<<<<< HEAD
         condition: on-failure
-=======
-        condition: none
->>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
       placement:
         constraints: [node.role == manager ]
   chrome:
-    image: selenium/node-chrome
-    entrypoint: >
-      bash -c '
-        export IP_ADDRESS=$$(ip addr show eth0 | grep "inet\b" | awk '"'"'{print $$2}'"'"' | awk -F/ '"'"'{print $$1}'"'"' | head -1) &&
-        SE_OPTS="-host $$IP_ADDRESS" /opt/bin/entry_point.sh'
+    image: selenium/node-chrome:3.141.59-zirconium
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
     volumes:
       - /dev/urandom:/dev/random
       - /dev/shm:/dev/shm
@@ -47,19 +40,12 @@ services:
         selenium.grid.type: "node"
         selenium.grid.node: "true"
       restart_policy:
-<<<<<<< HEAD
         condition: on-failure
-=======
-        condition: none
->>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
       placement:
         constraints: [node.role == worker]
   firefox:
-    image: selenium/node-firefox
-    entrypoint: >
-      bash -c '
-        export IP_ADDRESS=$$HOSTNAME &&
-        SE_OPTS="-host $$IP_ADDRESS" /opt/bin/entry_point.sh'
+    image: selenium/node-firefox:3.141.59-zirconium
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
     volumes:
       - /dev/shm:/dev/shm
       - /dev/urandom:/dev/random
@@ -78,10 +64,6 @@ services:
         selenium.grid.type: "node"
         selenium.grid.node: "true"
       restart_policy:
-<<<<<<< HEAD
         condition: on-failure
-=======
-        condition: none
->>>>>>> e096591cd0e7a7a14ee8384fb078b3ae42d983b7
       placement:
         constraints: [node.role == worker]
